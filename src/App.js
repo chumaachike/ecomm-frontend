@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import LoginPage from './pages/Auth/LoginPage';
+import SignupPage from './pages/Auth/SignupPage';
+import HomePage from './pages/HomePage';
+import ProtectedRoute from './components/ProtectedRoute';
+import ProductDetails from './components/ProductDetails';
+import { validateToken, loadUser } from './redux/slices/authSlice';
+import CategoryProduct from './pages/CategoryProducts';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        const token = Cookies.get('springBootEcom');
+        if (token) {
+            dispatch(validateToken(token))
+                .unwrap()
+                .then(({isValid, user})=> {
+                    if (isValid && user){
+                        dispatch(loadUser(user));
+                    }
+                })
+                .catch(() => {
+                    Cookies.remove('springBootEcom');
+                })
+        }
+    }, [dispatch])
+    return (
+        <Router>
+            <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<SignupPage />} />
+                <Route path="/products/:id" element={<ProtectedRoute><ProductDetails /></ProtectedRoute>} />
+                <Route path="categories/:id" element={<ProtectedRoute><CategoryProduct /></ProtectedRoute>} />
+                <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

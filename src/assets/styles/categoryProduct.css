@@ -1,0 +1,27 @@
+.category-page {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.category-header h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.category-content {
+    display: flex;
+    gap: 20px;
+}
+
+.product-section {
+    flex: 3;
+}
+
+.loading,
+.error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+}
