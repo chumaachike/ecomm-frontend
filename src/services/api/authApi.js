@@ -16,12 +16,29 @@ const login = async ({ username, password }) => {
     }
 };
 
-const signup = ({ username, password, email }) => axios.post(`${API_URL}/signup`, { username, password, email, roles: ["user"] }, {
-    headers: {
-        "Content-Type": "application/json",
-    },
-    withCredentials: true
-});
+const signup = async ({ username, password, email }) => {
+    try {
+        const response = await axios.post(
+            `${API_URL}/signup`,
+            {
+                username,
+                password,
+                email,
+                role: ["user"]
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true 
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
 const signout = () => axios.post(`${API_URL}/signout`, {}, {
     headers: {
         "Content-Type": "application/json",

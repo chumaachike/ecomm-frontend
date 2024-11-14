@@ -18,22 +18,22 @@ function ProductCard({ product }) {
 
   return (
     <div className="product-card">
-      <Link to={`/products/${product.productId}`}>
-        <img src={product.imageUrl} alt={product.productName} />
-        <h3>{product.productName}</h3>
+      <Link to={`/products/${product.productId}`} className="product-link">
+        <img src={product.imageUrl} alt={product.productName} className="product-image" />
+        <h3 className="product-title">{product.productName}</h3>
       </Link>
-      <p>
+      <p className="product-price">
         Price: <span>${product.price}</span>
       </p>
-      <p>
+      <p className="product-discount">
         Discount: <span>${product.discount}</span>
       </p>
-      <p>
+      <p className="product-available">
         Available Quantity: <span>{product.quantity}</span>
       </p>
-      <label>
+      <label className="product-quantity-label">
         Select Quantity:
-        <select value={quantity} onChange={handleQuantityChange}>
+        <select value={quantity} onChange={handleQuantityChange} className="product-quantity-select">
           {[...Array(product.quantity)].map((_, index) => (
             <option key={index + 1} value={index + 1}>
               {index + 1}
@@ -41,7 +41,7 @@ function ProductCard({ product }) {
           ))}
         </select>
       </label>
-      <button onClick={handleClick}>Add to Cart</button>
+      <button onClick={handleClick} className="product-add-button">Add to Cart</button>
     </div>
   );
 }

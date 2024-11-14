@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsByCategory } from "../redux/slices/productSlice";
 import ProductList from "../components/ProductList";
+import Navbar from "../components/Navbar";
 import Cart from "../components/Cart";
 import "../assets/styles/categoryProduct.css"; // Updated CSS file
 
@@ -18,6 +19,8 @@ const CategoryProduct = () => {
     const { products, loading, error } = useSelector((state) => state.product);
 
     return (
+        <>
+        <Navbar />
         <div className="category-page">
             <div className="category-header">
                 <h1>{category?.categoryName || "Category"}</h1>
@@ -31,6 +34,7 @@ const CategoryProduct = () => {
                 <Cart />
             </div>
         </div>
+        </>
     );
 };
 
