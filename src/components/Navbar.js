@@ -1,15 +1,17 @@
 // src/components/Navbar.js
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import '../assets/styles/navbar.css'; // Import CSS
-import { signout } from '../redux/slices/authSlice'; // Assuming logout is available
+import '../assets/styles/navbar.css';
+import { signout } from '../redux/slices/authSlice';
 
 const Navbar = () => {
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleLogout = () => {
         dispatch(signout());
@@ -19,11 +21,29 @@ const Navbar = () => {
         setDropdownVisible(!dropdownVisible);
     };
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/search?query=${searchQuery}`);
+        }
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-logo">
                 <Link to="/">MyApp</Link>
             </div>
+
+            <form onSubmit={handleSearch} className="navbar-search-form">
+                <input
+                    type="text"
+                    placeholder="Search products..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button type="submit">Search</button>
+            </form>
+
             <ul className="navbar-links">
                 <li>
                     <Link to="/cart">Cart</Link>
@@ -52,6 +72,7 @@ const Navbar = () => {
                 )}
             </ul>
         </nav>
+
     );
 };
 

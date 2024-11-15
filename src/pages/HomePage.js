@@ -30,7 +30,7 @@ function HomePage() {
       {productLoading && <p>Loading products</p>}
       {productError && <p>Error loading products: {productError}</p>}
       {!productLoading && !productError && <FeaturedProducts products={products} />}
-      <CTASection />
+      {/*<CTASection />  */}
       <Footer />
     </div>
   );

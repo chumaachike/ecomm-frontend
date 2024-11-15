@@ -1,32 +1,55 @@
-/* src/assets/styles/Navbar.css */
-
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #007bff;
+    justify-content: space-between;
+    background-color: #232f3e;
     padding: 10px 20px;
     color: white;
-    font-family: Arial, sans-serif;
 }
 
 .navbar-logo a {
     font-size: 24px;
-    font-weight: bold;
     color: white;
     text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar-search-form {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+}
+
+.navbar-search-form input {
+    width: 100%;
+    max-width: 400px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.navbar-search-form button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #febd69;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    outline: none;
 }
 
 .navbar-links {
-    list-style: none;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    align-items: center;
 }
 
 .navbar-links li {
+    margin: 0 10px;
     position: relative;
 }
 
@@ -34,68 +57,49 @@
     color: white;
     text-decoration: none;
     font-size: 16px;
-    transition: color 0.3s;
-}
-
-.navbar-links a:hover {
-    color: #d4d4d4;
 }
 
 .navbar-user span {
     cursor: pointer;
-    font-size: 16px;
 }
 
 .dropdown-menu {
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 0;
     background-color: white;
-    color: #333;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    overflow: hidden;
-    min-width: 150px;
-    z-index: 10;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
 }
 
-.dropdown-menu a,
-.dropdown-menu button {
-    display: block;
+.dropdown-menu a, .dropdown-menu button {
     padding: 10px;
     text-align: left;
     text-decoration: none;
-    color: #007bff;
-    background: none;
+    color: black;
+    background-color: white;
     border: none;
+    cursor: pointer;
     width: 100%;
-    cursor: pointer;
-    font-size: 14px;
 }
 
-.dropdown-menu a:hover,
-.dropdown-menu button:hover {
-    background-color: #f5f5f5;
-}
-
-.logout-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #007bff;
-    padding: 10px;
-    text-align: left;
+.dropdown-menu button:hover, .dropdown-menu a:hover {
+    background-color: #f3f3f3;
 }
 
 .signin-button {
-    background: #28a745;
+    background-color: #febd69;
     padding: 5px 10px;
-    border-radius: 4px;
+    border-radius: 5px;
+    color: black;
     text-decoration: none;
-    color: white;
-    font-size: 14px;
 }
 
 .signin-button:hover {
-    background: #218838;
+    background-color: #f3a847;
 }

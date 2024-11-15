@@ -1,0 +1,42 @@
+/* src/assets/styles/orderPage.css */
+
+.order-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.order-page h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-item {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-item h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.order-item p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.order-items p {
+    font-size: 14px;
+    margin: 5px 0;
+}

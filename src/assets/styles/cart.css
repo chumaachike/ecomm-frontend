@@ -1,55 +1,31 @@
-/* src/assets/styles/cart.css */
-
 .cart-container {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    max-width: 100%; /* Ensures it uses full width of its parent container */
+    width: 1000px; /* Set a specific width but adjusts based on screen size */
     margin: 20px auto;
     font-family: Arial, sans-serif;
-}
-
-.cart-container h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.cart-items {
-    margin-bottom: 20px;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    box-sizing: border-box; /* Include padding and border in width/height calculations */
 }
 
 .cart-item {
     display: flex;
+    flex-wrap: wrap; /* Allows items to wrap within their container */
     gap: 15px;
     padding: 15px;
     background-color: #ffffff;
     border-radius: 8px;
     margin-bottom: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.cart-item-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+    width: 80%; /* Makes the cart item span full width */
 }
 
 .cart-item-details {
     flex: 1;
-}
-
-.cart-item-details h3 {
-    font-size: 18px;
-    margin: 0 0 10px;
-}
-
-.cart-item-details p {
-    font-size: 16px;
-    margin: 5px 0;
+    min-width: 150px; /* Ensures item details take enough space but fit on smaller screens */
 }
 
 .cart-item-actions {
@@ -57,39 +33,30 @@
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.cart-item-actions label {
-    font-size: 14px;
-}
-
-.cart-item-actions input {
-    width: 60px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.remove-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.remove-button:hover {
-    background-color: #c82333;
+    flex-wrap: wrap; /* Prevent overflow on smaller screens */
 }
 
 .cart-summary {
     text-align: right;
+    margin-top: 20px;
 }
 
 .cart-summary h3 {
     font-size: 20px;
     color: #333;
+}
+
+.checkout-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.checkout-button:hover {
+    background-color: #0056b3;
 }

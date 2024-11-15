@@ -11,6 +11,8 @@ import ProductDetails from './components/ProductDetails';
 import { validateToken, loadUser } from './redux/slices/authSlice';
 import CategoryProduct from './pages/CategoryProducts';
 import CartPage from './pages/CartPage';
+import OrderPage from './pages/OrderPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
     const dispatch = useDispatch();
@@ -39,6 +41,8 @@ function App() {
                 <Route path="categories/:id" element={<ProtectedRoute><CategoryProduct /></ProtectedRoute>} />
                 <Route path='/cart' element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
                 <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+                <Route path='orders' element={<ProtectedRoute><OrderPage /></ProtectedRoute>} />
+                <Route path='checkout' element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
             </Routes>
         </Router>
     );
