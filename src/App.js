@@ -13,6 +13,7 @@ import CategoryProduct from './pages/CategoryProducts';
 import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import CheckoutPage from './pages/CheckoutPage';
+import SearchResults from './pages/SearchResults';
 
 function App() {
     const dispatch = useDispatch();
@@ -38,11 +39,12 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<SignupPage />} />
                 <Route path="/products/:id" element={<ProtectedRoute><ProductDetails /></ProtectedRoute>} />
-                <Route path="categories/:id" element={<ProtectedRoute><CategoryProduct /></ProtectedRoute>} />
+                <Route path="categories/:id/:name" element={<ProtectedRoute><CategoryProduct /></ProtectedRoute>} />
                 <Route path='/cart' element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
                 <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
                 <Route path='orders' element={<ProtectedRoute><OrderPage /></ProtectedRoute>} />
                 <Route path='checkout' element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
+                <Route path="/search" element={<SearchResults />} />
             </Routes>
         </Router>
     );

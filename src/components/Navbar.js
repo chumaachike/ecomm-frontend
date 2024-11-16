@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { getProductsByKeyword } from '../redux/slices/productSlice';
 import '../assets/styles/navbar.css';
 import { signout } from '../redux/slices/authSlice';
 
@@ -17,10 +18,6 @@ const Navbar = () => {
         dispatch(signout());
     };
 
-    const toggleDropdown = () => {
-        setDropdownVisible(!dropdownVisible);
-    };
-
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
@@ -31,7 +28,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <Link to="/">MyApp</Link>
+                <Link to="/">CHU-BAY</Link>
             </div>
 
             <form onSubmit={handleSearch} className="navbar-search-form">

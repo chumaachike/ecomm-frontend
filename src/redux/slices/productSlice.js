@@ -30,6 +30,17 @@ export const getProductsByCategory = createAsyncThunk( 'product/categoryProduct'
   }
 })
 
+export const getProductsByKeyword = createAsyncThunk(
+  'product/getProductByKeyword', async(keyword, {rejectWithValue}) =>{
+  try {
+    const response = await productApi.searchProductsByKeyword(keyword);
+    return response;
+  } catch (error){
+    console.log(error);
+    return rejectWithValue(error.response? error.response.data : error.message);
+  }
+})
+
 const productSlice = createSlice({
   name: 'product',
   initialState: {
@@ -92,6 +103,24 @@ const productSlice = createSlice({
         state.loading = false; // Reset loading
       })
       .addCase(getProductsByCategory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getProductsByKeyword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProductsByKeyword.fulfilled, (state, action) => {
+        const { content, pageNumber, pageSize, totalElements, totalPages, lastPage } = action.payload;
+        state.products = content;
+        state.pageNumber = pageNumber;
+        state.pageSize = pageSize;
+        state.totalElements = totalElements;
+        state.totalPages = totalPages;
+        state.lastPage = lastPage;
+        state.loading = false;
+      })
+      .addCase(getProductsByKeyword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

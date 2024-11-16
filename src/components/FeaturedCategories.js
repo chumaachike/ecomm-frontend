@@ -16,7 +16,7 @@ const FeaturedCategories = ({ categories }) => {
             <div className="category-grid">
                 {categories.map((category) => (
                     <Link
-                        to={`/categories/${category.categoryId}`}
+                        to={`/categories/${category.categoryId}/${category.categoryName}`}
                         key={category.categoryId}
                         onClick={() => handleCategoryClick(category)}>
                         <div className="category-card">

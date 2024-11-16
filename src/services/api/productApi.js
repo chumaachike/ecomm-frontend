@@ -46,4 +46,18 @@ const getProductsByCategory = async(productId)=>{
     }
 }
 
-export default {getProducts, getProduct, getProductsByCategory}
+const searchProductsByKeyword = async(keyword) => {
+    try{
+        const response = await axios.get(`http://localhost:8080/api/public/products/keyword/${keyword}`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            withCredentials: true
+        });
+        return response.data;
+    }catch (error){
+        throw error;
+    }
+}
+
+export default {getProducts, getProduct, getProductsByCategory, searchProductsByKeyword}
