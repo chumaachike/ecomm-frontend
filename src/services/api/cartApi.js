@@ -1,13 +1,4 @@
-import axios from "axios";
-
-// Centralized axios instance (optional, for reuse)
-const apiClient = axios.create({
-  baseURL: 'http://localhost:8080/api',
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true, // Ensure cookies or credentials are sent
-});
+import { apiClient } from "../apiClient";
 
 const addOrUpdateUserCart = async ({ productId, quantity }) => {
   try {

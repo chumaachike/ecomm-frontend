@@ -1,10 +1,14 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const apiClient = axios.create({
-    baseURL: 'http://localhost:8080/api', // Adjust to your API's base URL
-    withCredentials: true,               // Ensure cookies are sent with requests
-});
+export const apiClient = axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true, // Ensure cookies or credentials are sent
+  });
+  
 
 apiClient.interceptors.request.use(
     (config) => {

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import '../assets/styles/categories.css';
 import { useDispatch } from "react-redux";
 import { setSelectedCategory } from "../redux/slices/categorySlice";
-import Cart from "./Cart";
 
 const FeaturedCategories = ({ categories }) => {
     const dispatch = useDispatch();

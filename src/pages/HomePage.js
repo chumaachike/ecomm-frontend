@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import HeroSection from "../components/HeroSection";
 import FeaturedCategories from "../components/FeaturedCategories";
 import FeaturedProducts from "../components/FeaturedProducts";
-import CTASection from "../components/CTASection";
 import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../redux/slices/categorySlice";

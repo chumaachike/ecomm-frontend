@@ -1,4 +1,4 @@
-import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import orderApi from "../../services/api/orderApi";
 
 export const getUserOrders = createAsyncThunk(

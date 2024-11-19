@@ -1,19 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_URL = "http://localhost:8080/api/public/categories";
+export const apiClient = axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true, // Ensure cookies or credentials are sent
+  });
+  
 
 const getAllCategories = async (pageNumber = 0, pageSize = 10, sortBy = 'categoryName', sortOrder = 'asc') => {
     try {
-        const response = await axios.get(`${API_URL}`, {
+        const response = await apiClient.get('/public/categories', {
             params: { pageNumber, pageSize, sortBy, sortOrder },
-            headers: {
-                "Content-Type": "application/json",
-            },
-            withCredentials: true
         });
         return response.data;
     } catch (error) {
         throw error;
     }
 };
-export default {getAllCategories};
+
+export default { getAllCategories };
