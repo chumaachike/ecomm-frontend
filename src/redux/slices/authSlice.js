@@ -23,9 +23,14 @@ export const signup = createAsyncThunk('auth/signup', async (data, { rejectWithV
     }
 });
 
-export const signout = createAsyncThunk('auth/signout', async () => {
-    return await authApi.signout();
-});
+export const signout = createAsyncThunk('auth/signout', async (_, { rejectWithValue }) => {
+    try {
+      const response = await authApi.signout();
+      return { message: response.data.message };
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  });
 
 export const validateToken = createAsyncThunk('auth/validateToken', async (token) =>{
     return await authApi.validateToken(token);

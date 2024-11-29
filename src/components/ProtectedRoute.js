@@ -7,15 +7,20 @@ import { selectIsAuthenticated, validateToken } from '../redux/slices/authSlice'
 
 const ProtectedRoute = ({ children }) => {
     const isAuthenticated = useSelector(selectIsAuthenticated);
+    const loading = useSelector((state) => state.auth.loading);
     const token = Cookies.get('springBootEcom');
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(validateToken(token));
-    }, [dispatch, token])
+        if (token) {
+            dispatch(validateToken(token));
+        }
+    }, [dispatch, token]);
 
+    if (loading) {
+        return <div>Loading...</div>; // Optional: Show a loading indicator
+    }
 
-    
     if (!isAuthenticated) {
         return <Navigate to="/login" replace />;
     }

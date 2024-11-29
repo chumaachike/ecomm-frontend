@@ -48,12 +48,30 @@ const signout = () => axios.post(`${API_URL}/signout`, {}, {
 });
 
 const validateToken = async (token) => {
-    const response = await axios.get(`${API_URL}/validate-token`, {
-        params: { token },
-        withCredentials: true
-    });
-    return response.data;
+    try {
+        const response = await axios.get(`${API_URL}/validate-token`, {
+            params: { token },
+            withCredentials: true,
+        });
+        return response.data; // Successful validation
+    } catch (error) {
+        // Handle errors (e.g., token invalid or network error)
+        if (error.response) {
+            // Server responded with a status other than 2xx
+            console.error('Error response:', error.response.data);
+            throw new Error(error.response.data.message || 'Token validation failed');
+        } else if (error.request) {
+            // Request was made but no response received
+            console.error('No response:', error.request);
+            throw new Error('No response from server');
+        } else {
+            // Other errors
+            console.error('Error:', error.message);
+            throw new Error('An error occurred while validating the token');
+        }
+    }
 };
+
 
 
 
